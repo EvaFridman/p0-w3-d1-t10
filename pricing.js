@@ -1,7 +1,7 @@
 const plan = "pro";
 const period = "year";
 const age = 21;
-const promo = "sale";
+const promo = "WELCOME";
 
 let price;
 let hasError = false;
@@ -32,11 +32,15 @@ if (!hasError) {
 }
 
 if (!hasError) {
-    if (promo ?? false) {
+    if ((promo ?? "без промокода") === "WELCOME") {
         price = price * 0.95;
-    } else {
-        console.log(promo ?? "без промокода");
     }
+
+    if (isNaN(price) || price < 0) {
+        console.log("Error! Price is invalid");
+        price = 0;
+    }
+
     console.log("Final price:", price);
 } else {
     console.log("Error! Price is invalid, correct the above errors first");
